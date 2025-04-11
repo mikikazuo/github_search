@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+## 工夫した点
+Claudeを活用して、最初のテンプレートファイルをまとめて作成し、工数を減らした。
+プロンプトは以下の通り。API Routes経由であったり、１ファイルに複数コンポーネントが混ざっていたりしたので、複数回実行して、良さそうな結果を採用した。
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Next.js 15とコンポーネントライブラリ(shadcn/ui)を用いて、以下ページを作成して 。
+合わせて、テストコードの作成と日本語コメント・ドキュメンテーションを極力付与すること。
+
+-ページ１
+GitHub API (search/repositories)を用い、GitHubのリポジトリーの一覧リスト表示と検索フィルタリング
+一覧リストは画面外に出る場合を考慮し、スクロールごとに必要箇所のみ読み込むこと
+
+-ページ2（ページ1のリストをクリックした際に遷移する）
+リポジトリの詳細を表示（リポジトリ名・言語・Star数・Watcher数・Fork数・Isuue数）
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+githubのAPIの制限を超えてしまうためfetch関数にて１時間のキャッシュを設けるようにした。
+各検索ワードの１ページ目のみサーバーコンポーネント、追加読み込み部はクライアントコンポーネントとし高速化を図った。
